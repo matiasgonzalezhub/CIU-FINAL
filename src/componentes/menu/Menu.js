@@ -7,8 +7,8 @@ function Menu() {
   const [input, setInput] = useState("");
 
   const handleInput = () => {
-    alert(input);
-    //setBuscar(input);
+    localStorage.setItem("Nombre", input);  
+    
   };
 
   return (

@@ -7,8 +7,6 @@ import Pais from "../Pais/Pais";
 import Jumbotron from "../jumbotron/Jumbotron";
 
 function Busqueda() {
-
-    
   const [infoBusqueda, setInfoBusqueda] = useState([]);
 
   const {
@@ -26,7 +24,11 @@ function Busqueda() {
   } = infoBusqueda;
 
   useEffect(() => {
-    const url = "https://covid-api.mmediagroup.fr/v1/cases?country=Uruguay";
+    var pais = localStorage.getItem("Nombre")
+      ? localStorage.getItem("Nombre")
+      : "Uruguay";
+
+    const url = "https://covid-api.mmediagroup.fr/v1/cases?country=" + pais;
 
     const fetchData = async () => {
       try {
