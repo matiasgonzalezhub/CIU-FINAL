@@ -26,7 +26,7 @@ function Busqueda() {
   useEffect(() => {
     var pais = localStorage.getItem("Nombre")
       ? localStorage.getItem("Nombre")
-      : "Uruguay";
+      : "Argentina";
 
     const url = "https://covid-api.mmediagroup.fr/v1/cases?country=" + pais;
 
