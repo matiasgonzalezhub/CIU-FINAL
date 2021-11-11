@@ -2,7 +2,7 @@
   "name": "paginaweb",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nubecolectiva.com/blog/tutos/demos/pagina_web_react_bootstrap4/",
+  "homepage": "",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1",

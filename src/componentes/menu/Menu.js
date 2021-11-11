@@ -7,8 +7,7 @@ function Menu() {
   const [input, setInput] = useState("");
 
   const handleInput = () => {
-    localStorage.setItem("Nombre", input);  
-    
+    localStorage.setItem("Nombre", input);      
   };
 
   return (

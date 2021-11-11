@@ -9,7 +9,7 @@ function Footer() {
         </a>
       </p>
       <p>
-        &copy; {new Date().getFullYear()} InfoCodidAR. &middot;{" "}
+        &copy; {new Date().getFullYear()} InfoCovidAR. &middot;{" "}
         <a href="#" rel="noopener noreferrer">
           Política de Privacidad
         </a>{" "}
