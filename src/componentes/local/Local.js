@@ -48,7 +48,7 @@ function Local({ setBuscar }) {
             <Jumbotron />
 
             <div className="container">
-              <div className="row ">
+              <div className="row d-flex justify-content-center">
                 <Pais key={iso} pais={infoArgentina} />
               </div>
               <hr></hr>

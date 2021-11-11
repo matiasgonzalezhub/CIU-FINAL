@@ -53,7 +53,7 @@ function Busqueda() {
             <Jumbotron />
 
             <div className="container">
-              <div className="row ">
+              <div className="row d-flex justify-content-center">
                 <Pais key={iso} pais={infoBusqueda} />
               </div>
               <hr></hr>
