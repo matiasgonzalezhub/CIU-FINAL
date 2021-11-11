@@ -7,7 +7,7 @@ function Jumbotron() {
         <h1 className="display-3">Bienvenido a InfoCovidAR</h1>
         <p>
           En este sitio encontraras informacion relevante respecto al estado
-          epidemico de la argentina y el mundo
+          epidemico de tu pais y el mundo
         </p>
         <p></p>
       </div>

@@ -5,8 +5,12 @@ import Footer from "../footer/Footer";
 import Pais from "../Pais/Pais";
 import Jumbotron from "../jumbotron/Jumbotron";
 
-
 function Home() {
+  const [buscar, setBuscar] = useState("");
+
+  const handleInput = () => {
+    alert(buscar);
+  };
 
   const [infoPaises, setInfoPaises] = useState([]);
 

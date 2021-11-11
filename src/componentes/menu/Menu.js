@@ -1,12 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
+import {  useState } from "react";
 
 function Menu() {
+
+  const [input, setInput] = useState("");
+
+  const handleInput = () => {
+    alert(input);
+    //setBuscar(input);
+  };
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <NavLink to="/" className="navbar-brand">
-       InfoCovidAR
+        InfoCovidAR
       </NavLink>
       <button
         className="navbar-toggler"
@@ -27,7 +35,7 @@ function Menu() {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/nosotros" className="nav-link">
+            <NavLink to="/local" className="nav-link">
               Argentina{" "}
             </NavLink>
           </li>
@@ -39,13 +47,17 @@ function Menu() {
             type="text"
             placeholder="Buscar"
             aria-label="Buscar"
+            onChange={(e) => setInput(e.target.value)}
           />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Buscar
-          </button>
+          <NavLink to="/busqueda" className="nav-link">
+            <button
+              className="btn btn-outline-success my-2 my-sm-0"
+              type="submit"
+              onClick={() => handleInput()}
+            >
+              Buscar
+            </button>
+          </NavLink>
         </form>
       </div>
     </nav>

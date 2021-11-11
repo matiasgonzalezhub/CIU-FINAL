@@ -3,9 +3,9 @@ import { Fragment, useState, useEffect } from "react";
 import Menu from "../menu/Menu";
 import Footer from "../footer/Footer";
 import Pais from "../Pais/Pais";
-
 import Jumbotron from "../jumbotron/Jumbotron";
-function Local() {
+
+function Local({ setBuscar }) {
   const [infoArgentina, setInfoArgentina] = useState([]);
 
   const {
@@ -23,12 +23,10 @@ function Local() {
   } = infoArgentina;
 
   useEffect(() => {
-    debugger;
     const url = "https://covid-api.mmediagroup.fr/v1/cases?country=Argentina";
 
     const fetchData = async () => {
       try {
-        debugger;
         const response = await fetch(url);
         const json = await response.json();
 
