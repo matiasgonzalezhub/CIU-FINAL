@@ -69,6 +69,11 @@ function Home() {
           <Fragment>
             <main role="main">
               <div className="container">
+                <div className="d-flex justify-content-center">
+                  <h4>Los 6 paises con mas casos </h4>
+                </div>
+                <br></br>
+                <br></br>
                 <div className="row">
                   {infoPaises.map((pais) => (
                     <Pais key={pais.iso} pais={pais} />

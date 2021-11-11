@@ -6,8 +6,8 @@ function Pais({ pais }) {
 
   return (
     <Fragment>
-      
-      <div className="col-md-4">
+      <br></br>
+      <div className="col-md-4 shadow-sm p-3 mb-5 bg-white rounded">
         <h2>{country}</h2>
         <img
           style={{
@@ -32,6 +32,7 @@ function Pais({ pais }) {
           <strong>Actualizado al </strong> {updated}
         </p>
       </div>
+      <br></br>
     </Fragment>
   );
 }
