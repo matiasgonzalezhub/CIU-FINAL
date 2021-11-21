@@ -4,6 +4,151 @@ import { Fragment, useState, useEffect } from "react";
 function Pais({ pais }) {
   const { confirmed, recovered, deaths, country, updated } = pais;
 
+  const [cantidadCasosPrimerTrimestre, setCantidadCasosPrimerTrimestre] =
+    useState();
+
+  const [cantidadCasosSegundoTrimestre, setCantidadCasosSegundoTrimestre] =
+    useState();
+
+  const [cantidadCasosTercerTrimestre, setCantidadCasosTercerTrimestre] =
+    useState();
+
+  const [cantidadCasosCuartoTrimestre, setCantidadCasosCuartoTrimestre] =
+    useState();
+
+  const [cantidadMuertesPrimerTrimestre, setCantidadMuertesPrimerTrimestre] =
+    useState();
+
+  const [cantidadMuertesSegundoTrimestre, setCantidadMuertesSegundoTrimestre] =
+    useState();
+
+  const [cantidadMuertesTercerTrimestre, setCantidadMuertesTercerTrimestre] =
+    useState();
+
+  const [cantidadMuertesCuartoTrimestre, setCantidadMuertesCuartoTrimestre] =
+    useState();
+
+  const findAverage = (arr) => {
+    const { length } = arr;
+    return arr.reduce((acc, val) => {
+      return acc + val.value / length;
+    }, 0);
+  };
+
+  useEffect(() => {
+    debugger;
+    fetchDataConfirmed();
+    fetchDataDeaths();
+  });
+
+  const fetchDataConfirmed = async () => {
+    let casos;
+
+    const url =
+      "https://covid-api.mmediagroup.fr/v1/history?country=" +
+      country +
+      "&status=Confirmed";
+
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+
+      casos = json.All.dates;
+      let toObject = Object.entries(casos).map(([key, value]) => ({
+        key,
+        value,
+      }));
+
+      let primerTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-03-31" && el.key >= "2021-01-01";
+      });
+
+      let segundoTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-06-30" && el.key >= "2021-04-01";
+      });
+
+      let tercerTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-09-30" && el.key >= "2021-07-01";
+      });
+      let cuartoTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-12-31" && el.key >= "2021-10-01";
+      });
+
+      console.log("Casos : " + Math.ceil(findAverage(primerTrimestre)));
+      setCantidadCasosPrimerTrimestre(Math.ceil(findAverage(primerTrimestre)));
+
+      console.log("Casos : " + Math.ceil(findAverage(segundoTrimestre)));
+      setCantidadCasosSegundoTrimestre(
+        Math.ceil(findAverage(segundoTrimestre))
+      );
+
+      console.log("Casos : " + Math.ceil(findAverage(tercerTrimestre)));
+      setCantidadCasosTercerTrimestre(Math.ceil(findAverage(tercerTrimestre)));
+
+      console.log("Casos : " + Math.ceil(findAverage(cuartoTrimestre)));
+      setCantidadCasosCuartoTrimestre(Math.ceil(findAverage(cuartoTrimestre)));
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const fetchDataDeaths = async () => {
+    let casos;
+
+    const url =
+      "https://covid-api.mmediagroup.fr/v1/history?country=Argentina&status=deaths";
+
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+
+      casos = json.All.dates;
+      let toObject = Object.entries(casos).map(([key, value]) => ({
+        key,
+        value,
+      }));
+
+      let primerTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-03-31" && el.key >= "2021-01-01";
+      });
+
+      let segundoTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-06-30" && el.key >= "2021-04-01";
+      });
+
+      let tercerTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-09-30" && el.key >= "2021-07-01";
+      });
+      let cuartoTrimestre = toObject.filter(function (el) {
+        return el.key <= "2021-12-31" && el.key >= "2021-10-01";
+      });
+
+      console.log("Casos : " + Math.ceil(findAverage(primerTrimestre)));
+      setCantidadMuertesPrimerTrimestre(
+        Math.ceil(findAverage(primerTrimestre))
+      );
+
+      console.log("Casos : " + Math.ceil(findAverage(segundoTrimestre)));
+      setCantidadMuertesSegundoTrimestre(
+        Math.ceil(findAverage(segundoTrimestre))
+      );
+
+      console.log("Casos : " + Math.ceil(findAverage(tercerTrimestre)));
+      setCantidadMuertesTercerTrimestre(
+        Math.ceil(findAverage(tercerTrimestre))
+      );
+
+      console.log("Casos : " + Math.ceil(findAverage(cuartoTrimestre)));
+      setCantidadMuertesCuartoTrimestre(
+        Math.ceil(findAverage(cuartoTrimestre))
+      );
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const path = `https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ['1er Trimestre', '2do  Trimestre', '13er Trimestre', '4to Trimestre'], datasets: [{ label: 'Casos', data: [${cantidadCasosPrimerTrimestre}, ${cantidadCasosSegundoTrimestre}, ${cantidadCasosTercerTrimestre}, ${cantidadCasosCuartoTrimestre}] }, { label: 'Muertes', data: [${cantidadMuertesPrimerTrimestre}, ${cantidadMuertesSegundoTrimestre}, ${cantidadMuertesTercerTrimestre}, ${cantidadMuertesCuartoTrimestre}] }]}}`;
+
   return (
     <Fragment>
       <br></br>
@@ -15,7 +160,7 @@ function Pais({ pais }) {
             width: 300,
           }}
           alt="casos"
-          src="https://quickchart.io/chart?bkg=white&c={ type: 'bar', data: { labels: ['1er Trimestre', '2do  Trimestre', '13er Trimestre', '4to Trimestre'], datasets: [{ label: 'Casos', data: [50, 60, 70, 180] }, { label: 'Muertes', data: [100, 200, 300, 400] }] }}"
+          src={path}
         ></img>
         <br></br>
         <br></br>

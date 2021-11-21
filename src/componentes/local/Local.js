@@ -35,6 +35,7 @@ function Local({ setBuscar }) {
         console.log("error", error);
       }
     };
+
     fetchData();
   }, []);
 

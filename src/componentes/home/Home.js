@@ -83,8 +83,6 @@ function Home() {
               </div>
             </main>
           </Fragment>
-
-          {/**<hr className="featurette-divider" />*/}
         </div>
       </main>
 
@@ -92,5 +90,5 @@ function Home() {
     </>
   );
 }
- 
+
 export default Home;
