@@ -34,8 +34,6 @@ function Home() {
       }
     };
     fetchData();
-
-    console.log(infoPaises);
   }, []);
 
   function getSixMostCases(lista) {

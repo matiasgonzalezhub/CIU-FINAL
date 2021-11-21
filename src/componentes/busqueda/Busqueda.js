@@ -28,7 +28,12 @@ function Busqueda() {
       ? localStorage.getItem("Nombre")
       : "Argentina";
 
-    const url = "https://covid-api.mmediagroup.fr/v1/cases?country=" + pais;
+    const nameCapitalized = pais.charAt(0).toUpperCase() + pais.slice(1);
+
+    console.log("PAis: " + nameCapitalized);
+    
+    const url =
+      "https://covid-api.mmediagroup.fr/v1/cases?country=" + nameCapitalized;
 
     const fetchData = async () => {
       try {

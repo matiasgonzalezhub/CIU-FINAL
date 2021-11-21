@@ -36,7 +36,6 @@ function Pais({ pais }) {
   };
 
   useEffect(() => {
-    debugger;
     fetchDataConfirmed();
     fetchDataDeaths();
   });
@@ -74,18 +73,13 @@ function Pais({ pais }) {
         return el.key <= "2021-12-31" && el.key >= "2021-10-01";
       });
 
-      console.log("Casos : " + Math.ceil(findAverage(primerTrimestre)));
       setCantidadCasosPrimerTrimestre(Math.ceil(findAverage(primerTrimestre)));
 
-      console.log("Casos : " + Math.ceil(findAverage(segundoTrimestre)));
       setCantidadCasosSegundoTrimestre(
         Math.ceil(findAverage(segundoTrimestre))
       );
-
-      console.log("Casos : " + Math.ceil(findAverage(tercerTrimestre)));
       setCantidadCasosTercerTrimestre(Math.ceil(findAverage(tercerTrimestre)));
 
-      console.log("Casos : " + Math.ceil(findAverage(cuartoTrimestre)));
       setCantidadCasosCuartoTrimestre(Math.ceil(findAverage(cuartoTrimestre)));
     } catch (error) {
       console.log("error", error);
@@ -123,22 +117,18 @@ function Pais({ pais }) {
         return el.key <= "2021-12-31" && el.key >= "2021-10-01";
       });
 
-      console.log("Casos : " + Math.ceil(findAverage(primerTrimestre)));
       setCantidadMuertesPrimerTrimestre(
         Math.ceil(findAverage(primerTrimestre))
       );
 
-      console.log("Casos : " + Math.ceil(findAverage(segundoTrimestre)));
       setCantidadMuertesSegundoTrimestre(
         Math.ceil(findAverage(segundoTrimestre))
       );
 
-      console.log("Casos : " + Math.ceil(findAverage(tercerTrimestre)));
       setCantidadMuertesTercerTrimestre(
         Math.ceil(findAverage(tercerTrimestre))
       );
 
-      console.log("Casos : " + Math.ceil(findAverage(cuartoTrimestre)));
       setCantidadMuertesCuartoTrimestre(
         Math.ceil(findAverage(cuartoTrimestre))
       );
