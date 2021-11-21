@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 
 import * as serviceWorker from "./serviceWorker";
@@ -14,7 +14,7 @@ import Busqueda from "./componentes/busqueda/Busqueda";
 
 // Configuración de la rutas del Sitio Web
 ReactDOM.render(
-  <Router>
+  <BrowserRouter>
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -22,7 +22,7 @@ ReactDOM.render(
         <Route path="/Busqueda" component={Busqueda} />
       </Switch>
     </div>
-  </Router>,
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

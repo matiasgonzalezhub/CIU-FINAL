@@ -1,14 +1,32 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import {  useState } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { useState } from "react";
 
 function Menu() {
-
   const [input, setInput] = useState("");
+  const history = useHistory();
 
   const handleInput = () => {
-    localStorage.setItem("Nombre", input);      
+    debugger;
+    localStorage.setItem("Nombre", input);
+    history.push("/busqueda?name=" + getItem() + "");
+    history.go("/busqueda?name=" + getItem() + "");
   };
+
+  function handleClick() {
+    history.push("/busqueda?name=" + getItem() + "");
+  };
+
+
+  const completaInput = (e) => {
+    setInput(e);
+    localStorage.setItem("Nombre", e);
+  };
+
+  function getItem() {
+    var a = localStorage.getItem("Nombre");
+    return localStorage.getItem("Nombre");
+  }
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -46,14 +64,19 @@ function Menu() {
             type="text"
             placeholder="Buscar"
             aria-label="Buscar"
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => completaInput(e.target.value)}
           />
-          <NavLink to="/busqueda" className="nav-link">
+          <NavLink
+            to={"/busqueda?name=" + getItem() + ""}
+            className="nav-item btn my-2 my-sm-0"
+            replace
+          >
             <button
               className="btn btn-outline-success my-2 my-sm-0"
               type="submit"
-              onClick={() => handleInput()}
+              onClick={handleInput}
             >
+              {" "}
               Buscar
             </button>
           </NavLink>

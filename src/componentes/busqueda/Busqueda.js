@@ -5,10 +5,12 @@ import Footer from "../footer/Footer";
 import Pais from "../Pais/Pais";
 
 import Jumbotron from "../jumbotron/Jumbotron";
+import { useLocation } from "react-router-dom";
 
 function Busqueda() {
   const [infoBusqueda, setInfoBusqueda] = useState([]);
-
+  const [direccion, setDireccion] = useState("");
+  
   const {
     confirmed,
     recovered,
@@ -23,7 +25,18 @@ function Busqueda() {
     updated,
   } = infoBusqueda;
 
+
+  function useQuery() {
+    const { search } = useLocation();
+
+    setDireccion(React.useMemo(() => new URLSearchParams(search), [search]));
+  };
+
   useEffect(() => {
+    debugger;
+    var a = direccion;
+    
+
     var pais = localStorage.getItem("Nombre")
       ? localStorage.getItem("Nombre")
       : "Argentina";
@@ -31,7 +44,7 @@ function Busqueda() {
     const nameCapitalized = pais.charAt(0).toUpperCase() + pais.slice(1);
 
     console.log("PAis: " + nameCapitalized);
-    
+
     const url =
       "https://covid-api.mmediagroup.fr/v1/cases?country=" + nameCapitalized;
 

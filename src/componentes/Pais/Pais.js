@@ -90,7 +90,8 @@ function Pais({ pais }) {
     let casos;
 
     const url =
-      "https://covid-api.mmediagroup.fr/v1/history?country=Argentina&status=deaths";
+      "https://covid-api.mmediagroup.fr/v1/history?country="+
+      country +"&status=deaths";
 
     try {
       const response = await fetch(url);
