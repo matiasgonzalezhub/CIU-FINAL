@@ -56,7 +56,7 @@ function Busqueda() {
 
     var pais = localStorage.getItem("Nombre")
       ? localStorage.getItem("Nombre")
-      : "Argentina";
+      : "-";
 
     const nameCapitalized = pais.charAt(0).toUpperCase() + pais.slice(1);
 
