@@ -99,7 +99,9 @@ function Busqueda() {
                 {existe ? (
                   <Pais key={iso} pais={infoBusqueda} />
                 ) : (
-                  <div>El nombre del pais no coincide con el nombre de la API </div>
+                  <div className="alert alert-danger" role="alert">
+                    El nombre del pais no coincide con el nombre de la API{" "}
+                  </div>
                 )}
               </div>
               <hr></hr>
