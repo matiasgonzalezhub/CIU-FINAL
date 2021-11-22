@@ -10,7 +10,8 @@ import { useLocation } from "react-router-dom";
 function Busqueda() {
   const [infoBusqueda, setInfoBusqueda] = useState([]);
   const [direccion, setDireccion] = useState("");
-  
+  const [existe, setExiste] = useState(true);
+
   const {
     confirmed,
     recovered,
@@ -25,17 +26,33 @@ function Busqueda() {
     updated,
   } = infoBusqueda;
 
-
   function useQuery() {
     const { search } = useLocation();
 
     setDireccion(React.useMemo(() => new URLSearchParams(search), [search]));
-  };
+  }
+
+
+  
+  function getListOfCountries(json) {
+    let lista = [];
+    var newArrayDataOfOjbect = Object.values(json);
+
+    newArrayDataOfOjbect.forEach((element) => {
+      var item = element.All;
+
+      lista.push(item);
+    });
+
+    return lista;
+  }
+
+
+
 
   useEffect(() => {
-    debugger;
+   
     var a = direccion;
-    
 
     var pais = localStorage.getItem("Nombre")
       ? localStorage.getItem("Nombre")
@@ -43,7 +60,7 @@ function Busqueda() {
 
     const nameCapitalized = pais.charAt(0).toUpperCase() + pais.slice(1);
 
-    console.log("PAis: " + nameCapitalized);
+    console.log("Pais: " + nameCapitalized);
 
     const url =
       "https://covid-api.mmediagroup.fr/v1/cases?country=" + nameCapitalized;
@@ -53,8 +70,15 @@ function Busqueda() {
         const response = await fetch(url);
         const json = await response.json();
 
-        setInfoBusqueda(json.All);
-      } catch (error) {
+    let cantidad = getListOfCountries(json.All);
+
+        if (json.All.country !== nameCapitalized) {
+          setExiste(false);
+        } else {
+          setInfoBusqueda(json.All);
+        }
+      } catch (error) {      
+        setExiste(false);
         console.log("error", error);
       }
     };
@@ -72,7 +96,11 @@ function Busqueda() {
 
             <div className="container">
               <div className="row d-flex justify-content-center">
-                <Pais key={iso} pais={infoBusqueda} />
+                {existe ? (
+                  <Pais key={iso} pais={infoBusqueda} />
+                ) : (
+                  <div>El nombre del pais no coincide con el nombre de la API </div>
+                )}
               </div>
               <hr></hr>
             </div>
